@@ -39,9 +39,16 @@ def winning_move(board, piece):
     
     # Diagonal check
     # NE direction
-
+    for c in range(COLUMN_COUNT-3):
+        for r in range(ROW_COUNT-3):
+            if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
+                return True
 
     # NW direction
+    for c in range(COLUMN_COUNT-3):
+        for r in range(3, ROW_COUNT):
+            if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
+                return True
 
 def draw_board(board):
     pass
@@ -61,8 +68,9 @@ while not game_over:
             drop_piece(board, row, selection, 1)
 
             if winning_move(board, 1):
-                print("PLAYER 1 Wins")
+                print("-----PLAYER 1 Wins-----")
                 game_over = True
+                break
     
     # Player 2 Input
     else:
@@ -73,8 +81,9 @@ while not game_over:
             drop_piece(board, row, selection, 2)
 
             if winning_move(board, 2):
-                print("PLAYER 2 Wins")
+                print("-----PLAYER 2 Wins-----")
                 game_over = True
+                break
             
     print_board(board)
 
