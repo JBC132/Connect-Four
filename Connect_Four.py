@@ -83,35 +83,39 @@ while not game_over:
             sys.exit()
         
         if event.type == pygame.MOUSEBUTTONDOWN:
-            continue
-
             # # Player 1 Input
-            # if turn == 0:
-            #     selection = int(input("Player 1 Make your Selection (0-6)"))
+            if turn == 0:
+                posx = event.pos[0]
+                col = int(math.floor(posx/SQUARESIZE))
 
-            #     if is_valid_location(board, selection):
-            #         row = get_next_open_row(board, selection)
-            #         drop_piece(board, row, selection, 1)
+                #selection = int(input("Player 1 Make your Selection (0-6)"))
 
-            #         if winning_move(board, 1):
-            #             print("-----PLAYER 1 Wins-----")
-            #             game_over = True
-            #             break
+                if is_valid_location(board, col):
+                    row = get_next_open_row(board, col)
+                    drop_piece(board, row, col, 1)
+
+                    if winning_move(board, 1):
+                        print("-----PLAYER 1 Wins-----")
+                        game_over = True
+                        break
             
             # # Player 2 Input
-            # else:
-            #     selection = int(input("Player 2 Make your Selection (0-6)"))
+            else:
+                posx = event.pos[0]
+                col = int(math.floor(posx/SQUARESIZE))
 
-            #     if is_valid_location(board, selection):
-            #         row = get_next_open_row(board, selection)
-            #         drop_piece(board, row, selection, 2)
+                #selection = int(input("Player 2 Make your Selection (0-6)"))
 
-            #         if winning_move(board, 2):
-            #             print("-----PLAYER 2 Wins-----")
-            #             game_over = True
-            #             break
+                if is_valid_location(board, col):
+                    row = get_next_open_row(board, col)
+                    drop_piece(board, row, col, 2)
+
+                    if winning_move(board, 2):
+                        print("-----PLAYER 2 Wins-----")
+                        game_over = True
+                        break
                     
-            # print_board(board)
+            print_board(board)
 
-            # turn += 1
-            # turn = turn % 2 
+            turn += 1
+            turn = turn % 2 
